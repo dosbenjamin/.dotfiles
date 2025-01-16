@@ -1,6 +1,7 @@
 #!/bin/sh
 
-test -e ~/.ssh/authorized_keys && rm ~/.ssh/authorized_keys
+mkdir -p -m 700 .ssh
+
 test -e ~/.profile && rm ~/.profile
 test -e ~/.bash_logout && rm ~/.bash_logout
 test -e ~/.bashrc && rm ~/.bashrc
