@@ -1,0 +1,18 @@
+cask_args appdir: "/Applications"
+
+tap "homebrew/bundle"
+
+brew 'git'
+brew 'cloudflared'
+brew 'mas'
+
+cask "discord"
+cask "font-jetbrains-mono"
+cask "visual-studio-code"
+cask "brave-browser"
+cask "notion"
+
+mas "Slack", id: 803453959
+mas "WhatsApp", id: 310633997
+mas "Messenger", id: 1480068668
+mas "Numbers", id: 409203825

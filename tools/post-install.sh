@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 test -e ~/.ssh/authorized_keys && rm ~/.ssh/authorized_keys
 test -e ~/.profile && rm ~/.profile
