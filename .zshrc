@@ -72,6 +72,8 @@ ZSH_THEME="dieter"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
 
+zstyle :omz:plugins:ssh-agent quiet yes
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
