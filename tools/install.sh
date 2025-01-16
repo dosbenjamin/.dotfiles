@@ -2,12 +2,6 @@
 
 mkdir -p -m 700 .ssh
 
-test -e ~/.ssh/authorized_keys && rm ~/.ssh/authorized_keys
-test -e ~/.profile && rm ~/.profile
-test -e ~/.bash_logout && rm ~/.bash_logout
-test -e ~/.bashrc && rm ~/.bashrc
-test -e ~/.cloud-locale-test.skip && rm ~/.cloud-locale-test.skip
-
 ln ~/dotfiles/.zshrc ~/.zshrc
 ln ~/dotfiles/.gitconfig ~/.gitconfig
 ln ~/dotfiles/.hushlogin ~/.hushlogin
