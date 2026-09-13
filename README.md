@@ -74,6 +74,8 @@ Review the lock-file diff and evaluate the configuration before switching.
 
 ### Managed macOS configuration
 
+The configuration prefers user-scoped management through Home Manager. System-level management is reserved for components that integrate naturally with macOS: Lix and Nix settings, GUI and Mac App Store applications, fonts used by macOS applications, and system defaults. New command-line packages and personal configuration should therefore go into Home Manager unless they require system-wide integration.
+
 Home Manager keeps the terminal environment deliberately small:
 
 - Zsh with no framework, theme, or third-party plugins;

@@ -9,6 +9,7 @@
 - Keep the generic macOS flake configuration name `macos`; do not create machine-specific configurations unless requested.
 - Target Apple Silicon (`aarch64-darwin`) with user `benjamin`, home `/Users/benjamin`, and repository `/Users/benjamin/.dotfiles`.
 - Keep Lix as the configured Nix implementation.
+- Prefer user-scoped configuration and packages through Home Manager. Keep system-level management only where macOS integration warrants it: Lix and Nix settings, GUI and Mac App Store applications, fonts used by macOS applications, and system defaults belong in nix-darwin.
 - Keep the macOS shell minimal: Zsh without Oh My Zsh, starship, zoxide, fzf, autosuggestions, syntax highlighting, or other plugins.
 - Keep `home.packages` limited to `cloudflared` unless explicitly requested otherwise.
 - Use macOS/Xcode CLT for Git, curl, and SSH. Do not manage `.gitconfig` on macOS.
