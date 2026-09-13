@@ -29,7 +29,6 @@
     casks = [
       "battle-net"
       "chatgpt"
-      "codex"
       "discord"
       "figma"
       "google-chrome"
@@ -40,12 +39,12 @@
       "rode-connect"
       "steam"
       "teamviewer"
-      "telegram"
       "visual-studio-code"
     ];
 
     masApps = {
       Numbers = 361304891;
+      Telegram = 747648890;
       WhatsApp = 310633997;
     };
 

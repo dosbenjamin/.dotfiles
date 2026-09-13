@@ -11,7 +11,10 @@
     homeDirectory = "/Users/benjamin";
     stateVersion = "26.05";
 
-    packages = [ pkgs.cloudflared ];
+    packages = with pkgs; [
+      cloudflared
+      codex
+    ];
     sessionPath = [ "$HOME/.local/bin" ];
 
     file = {

@@ -80,7 +80,7 @@ Home Manager keeps the terminal environment deliberately small:
 
 - Zsh with no framework, theme, or third-party plugins;
 - `$HOME/.local/bin` on `PATH`;
-- `cloudflared` as the only explicit `home.packages` entry;
+- `cloudflared` and the Codex CLI through `home.packages`;
 - `.hushlogin` linked from this repository;
 - no managed Git configuration.
 
@@ -89,14 +89,14 @@ nix-darwin manages Lix, flakes, JetBrains Mono, Dock and Finder preferences, dar
 Homebrew installs `mas` and these casks:
 
 ```text
-battle-net             chatgpt            codex
-discord                figma              google-chrome
-league-of-legends      linearmouse        minecraft
-nvidia-geforce-now     rode-connect       steam
-teamviewer             telegram           visual-studio-code
+battle-net             chatgpt            discord
+figma                  google-chrome      league-of-legends
+linearmouse            minecraft          nvidia-geforce-now
+rode-connect           steam              teamviewer
+visual-studio-code
 ```
 
-The Mac App Store entries are Numbers and WhatsApp. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
+Prefer Nix and Home Manager for command-line packages when they are available. The Mac App Store entries are Numbers, Telegram, and WhatsApp; when an application is available from both sources, prefer the Mac App Store over a Homebrew cask. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
 
 The screenshot directory is `/Users/benjamin/Pictures/Screenshots`. Home Manager creates it when necessary.
 
