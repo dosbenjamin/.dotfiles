@@ -26,7 +26,7 @@
 - Preserve the platform guards in all bootstrap and post-install scripts.
 - Avoid destructive operations and never commit unless explicitly requested.
 - Do not add secrets, credentials, host keys, or machine-specific private data.
-- Do not generate or commit the binary Terminal profile. Its future location is `assets/terminal/GitHub Dark.terminal`.
+- Do not generate or commit the Terminal profile. Its location is `assets/terminal/GitHub Dark Profile.terminal`.
 - When changing macOS packages or applications, keep the configuration intentionally minimal and verify identifiers against current upstream sources.
 - When changing Nix inputs, update `flake.lock` deliberately and review the resulting diff.
 - Validate relevant changes from the repository root with:

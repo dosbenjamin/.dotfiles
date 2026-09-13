@@ -5,6 +5,7 @@ set -euo pipefail
 readonly expected_user="benjamin"
 readonly expected_home="/Users/benjamin"
 readonly expected_repo="${expected_home}/.dotfiles"
+readonly terminal_profile_name="GitHub Dark"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "This bootstrap only supports macOS." >&2
@@ -50,6 +51,14 @@ if ! command -v nix >/dev/null 2>&1; then
 
   # shellcheck disable=SC1091
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
+terminal_profile="${repo_root}/assets/terminal/GitHub Dark Profile.terminal"
+
+if ! defaults read com.apple.Terminal "Window Settings" 2>/dev/null \
+  | grep -Fq "\"${terminal_profile_name}\" ="; then
+  echo "Importing the ${terminal_profile_name} Terminal profile..."
+  open -a Terminal "${terminal_profile}"
 fi
 
 echo "Make sure you are signed in to the Mac App Store before continuing."
