@@ -25,7 +25,7 @@ The Linux setup remains script-based. macOS uses a flake with nix-darwin and Hom
     └── post-install.sh
 ```
 
-The macOS Terminal profile lives at `assets/terminal/GitHub Dark Profile.terminal`; the bootstrap imports it through Terminal rather than generating it with Nix.
+The macOS Terminal profile lives at `assets/terminal/GitHub Dark.terminal`; the bootstrap imports it through Terminal rather than generating it with Nix.
 
 ## macOS
 
@@ -107,7 +107,7 @@ The screenshot directory is `/Users/benjamin/Pictures/Screenshots`. Home Manager
 
 ### Terminal profile
 
-The bootstrap imports `assets/terminal/GitHub Dark Profile.terminal` when a profile named `GitHub Dark` is not already installed. The nix-darwin configuration then selects it as Terminal's default and startup profile. Existing profiles are left untouched.
+The bootstrap imports `assets/terminal/GitHub Dark.terminal` when a profile named `GitHub Dark` is not already installed. Terminal derives that profile name from the filename. The nix-darwin configuration then selects it as Terminal's default and startup profile. Existing profiles are left untouched.
 
 ## Linux
 

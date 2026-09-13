@@ -53,7 +53,7 @@ if ! command -v nix >/dev/null 2>&1; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
-terminal_profile="${repo_root}/assets/terminal/GitHub Dark Profile.terminal"
+terminal_profile="${repo_root}/assets/terminal/GitHub Dark.terminal"
 
 if ! defaults read com.apple.Terminal "Window Settings" 2>/dev/null \
   | grep -Fq "\"${terminal_profile_name}\" ="; then
