@@ -4,7 +4,7 @@ Personal configuration for Benjamin's remote Linux environment and Apple Silicon
 
 The Mac is intentionally a lightweight client rather than the primary development workstation. It runs macOS GUI applications, provides a minimal terminal for SSH and occasional local commands, and uses `cloudflared` for SSH access through Cloudflare short-lived certificates and tunnels. The main working environment is a remote VPS, which contains, or will receive, the substantial Linux dotfiles configuration.
 
-The Linux setup remains script-based. macOS uses a flake with nix-darwin and Home Manager, while Homebrew handles graphical applications. The structure is intentionally simple so Linux can migrate to Home Manager gradually without breaking the existing setup or turning macOS into a full development workstation.
+The Linux setup remains script-based. macOS uses a flake with nix-darwin and Home Manager, while nix-darwin's Homebrew integration handles graphical applications. Linux can therefore migrate to Home Manager gradually without interrupting the existing setup.
 
 ## Layout
 
@@ -14,6 +14,7 @@ The Linux setup remains script-based. macOS uses a flake with nix-darwin and Hom
 ├── .hushlogin
 ├── .zshrc
 ├── AGENTS.md
+├── assets/terminal/GitHub Dark.terminal
 ├── nix
 │   ├── flake.lock
 │   ├── flake.nix
@@ -77,7 +78,7 @@ Review the lock-file diff and evaluate the configuration before switching.
 
 ### Managed macOS configuration
 
-The configuration prefers user-scoped management through Home Manager. System-level management is reserved for components that integrate naturally with macOS: Lix and Nix settings, GUI and Mac App Store applications, fonts used by macOS applications, and system defaults. The macOS environment must remain intentionally minimal: do not add local development tooling or a broad collection of command-line packages unless explicitly requested. When a new user-scoped package is required, manage it through Home Manager unless it needs system-wide macOS integration.
+The configuration uses Home Manager for user-scoped packages and files. nix-darwin handles system integration: Lix and Nix settings, GUI and Mac App Store applications, fonts, and macOS defaults. The resulting macOS environment is intentionally minimal rather than a full local development setup.
 
 Home Manager keeps the terminal environment deliberately small:
 
@@ -101,7 +102,7 @@ rode-connect           steam              teamviewer
 visual-studio-code
 ```
 
-Do not add further command-line packages by default. If one is explicitly needed, prefer Nix and Home Manager when it is available. The Mac App Store entries are Numbers, Telegram, and WhatsApp; when an application is available from both sources, prefer the Mac App Store over a Homebrew cask. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
+The Mac App Store entries are Numbers, Telegram, and WhatsApp. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
 
 The screenshot directory is `/Users/benjamin/Pictures/Screenshots`. Home Manager creates it when necessary.
 
