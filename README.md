@@ -76,6 +76,19 @@ nix flake update
 
 Review the lock-file diff and evaluate the configuration before switching.
 
+For routine maintenance, Home Manager defines a `macos-update` Zsh alias. It
+runs the repository's maintenance script, which updates the pinned Nix inputs,
+displays their lock-file diff for confirmation, applies the nix-darwin
+configuration, upgrades Homebrew and Mac App Store applications, then cleans
+obsolete Homebrew downloads and unreachable Nix store paths:
+
+```bash
+macos-update
+```
+
+Pass `--yes` to skip only the lock-file confirmation. The command refuses to
+run when `nix/flake.lock` already contains uncommitted changes.
+
 ### Managed macOS configuration
 
 The configuration uses Home Manager for user-scoped packages and files. nix-darwin handles system integration: Lix and Nix settings, GUI and Mac App Store applications, fonts, and macOS defaults. The resulting macOS environment is intentionally minimal rather than a full local development setup.

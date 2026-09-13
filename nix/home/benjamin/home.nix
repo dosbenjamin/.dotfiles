@@ -21,7 +21,10 @@
     file.".hushlogin".text = "";
   };
 
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    shellAliases.macos-update = "bash ~/.dotfiles/scripts/update-macos.sh";
+  };
 
   programs.ssh = {
     enable = true;
