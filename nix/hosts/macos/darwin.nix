@@ -48,9 +48,14 @@
       WhatsApp = 310633997;
     };
 
+    global = {
+      autoUpdate = false;
+      brewfile = true;
+    };
+
     onActivation = {
       autoUpdate = false;
-      cleanup = "none";
+      cleanup = "zap";
       upgrade = false;
     };
   };

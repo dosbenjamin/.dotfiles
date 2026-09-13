@@ -102,7 +102,12 @@ rode-connect           steam              teamviewer
 visual-studio-code
 ```
 
-The Mac App Store entries are Numbers, Telegram, and WhatsApp. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
+The Mac App Store entries are Numbers, Telegram, and WhatsApp. During activation,
+nix-darwin removes undeclared Homebrew taps, formulae, and casks. Casks are removed
+with `zap`, including their associated files when supported by the cask. Manual
+Homebrew commands do not auto-update, and `brew bundle` uses the Brewfile generated
+by nix-darwin. Homebrew Bundle cannot automatically remove undeclared Mac App Store
+applications.
 
 The screenshot directory is `/Users/benjamin/Pictures/Screenshots`. Home Manager creates it when necessary.
 
