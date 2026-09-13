@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ "$(uname -s)" != "Linux" ]]; then
+  echo "This post-install script only supports Linux." >&2
+  exit 1
+fi
+
 test -e ~/.ssh/authorized_keys && rm ~/.ssh/authorized_keys
 test -e ~/.profile && rm ~/.profile
 test -e ~/.bashrc && rm ~/.bashrc

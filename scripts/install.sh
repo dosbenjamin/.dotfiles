@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ "$(uname -s)" != "Linux" ]]; then
+  echo "This installer only supports Linux. On macOS, use scripts/bootstrap-macos.sh." >&2
+  exit 1
+fi
+
 ln ~/.dotfiles/.zshrc ~/.zshrc
 ln ~/.dotfiles/.gitconfig ~/.gitconfig
 ln ~/.dotfiles/.hushlogin ~/.hushlogin
