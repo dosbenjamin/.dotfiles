@@ -14,6 +14,7 @@
     packages = with pkgs; [
       cloudflared
       codex
+      mas
     ];
     sessionPath = [ "$HOME/.local/bin" ];
 

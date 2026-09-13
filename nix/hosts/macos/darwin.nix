@@ -24,7 +24,7 @@
   homebrew = {
     enable = true;
 
-    brews = [ "mas" ];
+    brews = [ "mole" ];
 
     casks = [
       "battle-net"

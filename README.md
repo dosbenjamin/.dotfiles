@@ -84,7 +84,7 @@ Home Manager keeps the terminal environment deliberately small:
 
 - Zsh with no framework, theme, or third-party plugins;
 - `$HOME/.local/bin` on `PATH`;
-- `cloudflared` and the Codex CLI as the current contents of `home.packages`;
+- `cloudflared`, Codex, and `mas` as the current contents of `home.packages`;
 - an empty `.hushlogin` generated independently of the legacy file;
 - no dependency on the legacy `.zshrc`, `.gitconfig`, or `.hushlogin` files.
 
@@ -92,7 +92,7 @@ Home Manager keeps the terminal environment deliberately small:
 
 nix-darwin manages Lix, flakes, JetBrains Mono, Dock and Finder preferences, dark mode, keyboard repeat, spelling/capitalization preferences, screenshots, and the Terminal profile name.
 
-Homebrew installs `mas` and these casks:
+Homebrew installs the `mole` formula and these casks:
 
 ```text
 battle-net             chatgpt            discord
