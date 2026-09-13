@@ -72,6 +72,8 @@
     finder = {
       AppleShowAllExtensions = true;
       AppleShowAllFiles = true;
+      FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
       ShowPathbar = true;
       ShowStatusBar = true;
       _FXShowPosixPathInTitle = true;
@@ -80,6 +82,7 @@
 
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
+      ApplePressAndHoldEnabled = false;
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
       NSAutomaticCapitalizationEnabled = false;
