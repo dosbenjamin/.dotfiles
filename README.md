@@ -1,8 +1,10 @@
 # Dotfiles
 
-Personal configuration for Benjamin's Linux systems and Apple Silicon Macs.
+Personal configuration for Benjamin's remote Linux environment and Apple Silicon Macs.
 
-The Linux setup remains script-based. macOS uses a flake with nix-darwin and Home Manager, while Homebrew handles graphical applications. The structure is intentionally simple so Linux can migrate to Home Manager gradually without breaking the existing setup.
+The Mac is intentionally a lightweight client rather than the primary development workstation. It runs macOS GUI applications, provides a minimal terminal for SSH and occasional local commands, and uses `cloudflared` for SSH access through Cloudflare short-lived certificates and tunnels. The main working environment is a remote VPS, which contains, or will receive, the substantial Linux dotfiles configuration.
+
+The Linux setup remains script-based. macOS uses a flake with nix-darwin and Home Manager, while Homebrew handles graphical applications. The structure is intentionally simple so Linux can migrate to Home Manager gradually without breaking the existing setup or turning macOS into a full development workstation.
 
 ## Layout
 
@@ -75,15 +77,17 @@ Review the lock-file diff and evaluate the configuration before switching.
 
 ### Managed macOS configuration
 
-The configuration prefers user-scoped management through Home Manager. System-level management is reserved for components that integrate naturally with macOS: Lix and Nix settings, GUI and Mac App Store applications, fonts used by macOS applications, and system defaults. New command-line packages and personal configuration should therefore go into Home Manager unless they require system-wide integration.
+The configuration prefers user-scoped management through Home Manager. System-level management is reserved for components that integrate naturally with macOS: Lix and Nix settings, GUI and Mac App Store applications, fonts used by macOS applications, and system defaults. The macOS environment must remain intentionally minimal: do not add local development tooling or a broad collection of command-line packages unless explicitly requested. When a new user-scoped package is required, manage it through Home Manager unless it needs system-wide macOS integration.
 
 Home Manager keeps the terminal environment deliberately small:
 
 - Zsh with no framework, theme, or third-party plugins;
 - `$HOME/.local/bin` on `PATH`;
-- `cloudflared` and the Codex CLI through `home.packages`;
+- `cloudflared` and the Codex CLI as the current contents of `home.packages`;
 - `.hushlogin` linked from this repository;
 - no managed Git configuration.
+
+`cloudflared` must remain available in the user shell because it participates directly in SSH connections through Cloudflare short-lived certificates and tunnels. Codex is retained for occasional use on the Mac; this does not make macOS a local development workstation. Git, curl, and SSH come from macOS/Xcode Command Line Tools and are sufficient for bootstrap and occasional local use.
 
 nix-darwin manages Lix, flakes, JetBrains Mono, Dock and Finder preferences, dark mode, keyboard repeat, spelling/capitalization preferences, screenshots, and the Terminal profile name.
 
@@ -97,7 +101,7 @@ rode-connect           steam              teamviewer
 visual-studio-code
 ```
 
-Prefer Nix and Home Manager for command-line packages when they are available. The Mac App Store entries are Numbers, Telegram, and WhatsApp; when an application is available from both sources, prefer the Mac App Store over a Homebrew cask. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
+Do not add further command-line packages by default. If one is explicitly needed, prefer Nix and Home Manager when it is available. The Mac App Store entries are Numbers, Telegram, and WhatsApp; when an application is available from both sources, prefer the Mac App Store over a Homebrew cask. Homebrew cleanup is disabled, so applications not declared here are not automatically removed.
 
 The screenshot directory is `/Users/benjamin/Pictures/Screenshots`. Home Manager creates it when necessary.
 

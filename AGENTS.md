@@ -1,5 +1,13 @@
 # Agent instructions
 
+## Project purpose
+
+- Treat macOS as a lightweight client, not as the primary development workstation.
+- Use the Mac mainly for macOS GUI applications, a minimal terminal, SSH connections, Cloudflare access through `cloudflared`, and occasional macOS commands.
+- Treat the remote VPS as the primary working environment and the eventual home of the substantial Linux dotfiles configuration.
+- Do not build a broad local development environment or install a large collection of CLI tools on macOS.
+- Keep `cloudflared` available in the macOS user shell because it is required for SSH access through Cloudflare short-lived certificates and tunnels.
+
 ## Project decisions
 
 - Keep the existing Linux setup operational while migrating it gradually to Nix and Home Manager.
@@ -11,7 +19,7 @@
 - Keep Lix as the configured Nix implementation.
 - Prefer user-scoped configuration and packages through Home Manager. Keep system-level management only where macOS integration warrants it: Lix and Nix settings, GUI and Mac App Store applications, fonts used by macOS applications, and system defaults belong in nix-darwin.
 - Keep the macOS shell minimal: Zsh without Oh My Zsh, starship, zoxide, fzf, autosuggestions, syntax highlighting, or other plugins.
-- Keep `home.packages` limited to `cloudflared` unless explicitly requested otherwise.
+- Keep `home.packages` limited to its current `cloudflared` and Codex packages unless explicitly requested otherwise.
 - Use macOS/Xcode CLT for Git, curl, and SSH. Do not manage `.gitconfig` on macOS.
 - Manage GUI and Mac App Store applications through nix-darwin's Homebrew integration.
 - Do not enable destructive Homebrew cleanup; undeclared applications must remain installed.
