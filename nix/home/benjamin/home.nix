@@ -17,9 +17,7 @@
     ];
     sessionPath = [ "$HOME/.local/bin" ];
 
-    file = {
-      ".hushlogin".source = config.lib.file.mkOutOfStoreSymlink "/Users/benjamin/.dotfiles/.hushlogin";
-    };
+    file.".hushlogin".text = "";
   };
 
   programs.zsh.enable = true;

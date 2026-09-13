@@ -85,8 +85,8 @@ Home Manager keeps the terminal environment deliberately small:
 - Zsh with no framework, theme, or third-party plugins;
 - `$HOME/.local/bin` on `PATH`;
 - `cloudflared` and the Codex CLI as the current contents of `home.packages`;
-- `.hushlogin` linked from this repository;
-- no managed Git configuration.
+- an empty `.hushlogin` generated independently of the legacy file;
+- no dependency on the legacy `.zshrc`, `.gitconfig`, or `.hushlogin` files.
 
 `cloudflared` must remain available in the user shell because it participates directly in SSH connections through Cloudflare short-lived certificates and tunnels. Codex is retained for occasional use on the Mac; this does not make macOS a local development workstation. Git, curl, and SSH come from macOS/Xcode Command Line Tools and are sufficient for bootstrap and occasional local use.
 
@@ -119,7 +119,7 @@ bash ~/.dotfiles/scripts/install.sh
 bash ~/.dotfiles/scripts/post-install.sh
 ```
 
-`install.sh` links the root dotfiles, installs Oh My Zsh and its existing plugins, and changes the login shell. `post-install.sh` is destructive by design: it removes existing Bash configuration, cloud-init marker files, shell history, and `~/.ssh/authorized_keys`. Review it before running it.
+`install.sh` links the legacy root `.zshrc`, `.gitconfig`, and `.hushlogin` files, installs Oh My Zsh and its existing plugins, and changes the login shell. These files are Linux-only and are not consumed by the macOS configuration. `post-install.sh` is destructive by design: it removes existing Bash configuration, cloud-init marker files, shell history, and `~/.ssh/authorized_keys`. Review it before running it.
 
 Both scripts refuse to run outside Linux. They will remain available until a separate, progressive Home Manager migration replaces their responsibilities.
 
