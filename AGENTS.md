@@ -31,6 +31,7 @@
 ## Working method
 
 - Inspect `git status` and relevant diffs before editing. Preserve unrelated and uncommitted changes.
+- Use Conventional Commits for commit messages (for example, `feat:`, `fix:`, `docs:`, `refactor:`, or `chore:`).
 - Do not delete, rename, or substantially rewrite the legacy Linux scripts as part of unrelated macOS work.
 - Preserve the platform guards in all bootstrap and post-install scripts.
 - Avoid destructive operations and never commit unless explicitly requested.
