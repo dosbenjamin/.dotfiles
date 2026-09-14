@@ -77,7 +77,7 @@ else
 fi
 
 echo "Applying the macOS configuration..."
-sudo nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
+sudo -H nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
   switch --flake "path:${expected_repo}/nix#macos"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"

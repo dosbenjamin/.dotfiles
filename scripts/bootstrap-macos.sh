@@ -38,6 +38,8 @@ if ! xcode-select -p >/dev/null 2>&1; then
 fi
 
 if ! command -v brew >/dev/null 2>&1; then
+  echo "Administrator access is required to install Homebrew."
+  sudo -v
   echo "Installing Homebrew..."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -49,8 +51,12 @@ if ! command -v nix >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf -L https://install.lix.systems/lix \
     | sh -s -- install --no-confirm
 
+  # The Lix environment script probes optional shell variables such as
+  # ZSH_VERSION, which are unset when this Bash script runs with nounset.
+  set +u
   # shellcheck disable=SC1091
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+  set -u
 fi
 
 terminal_profile="${repo_root}/assets/terminal/GitHub Dark.terminal"
@@ -65,5 +71,5 @@ echo "Make sure you are signed in to the Mac App Store before continuing."
 echo "Applying the macOS configuration..."
 
 cd "${repo_root}"
-sudo nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
+sudo -H nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
   switch --flake "${repo_root}/nix#macos"

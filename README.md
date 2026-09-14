@@ -43,27 +43,41 @@ The configuration is named `macos` rather than after a specific machine, so the 
 
 ### First installation
 
-Clone the repository to the expected location, then run:
+On a new Mac, install the Xcode Command Line Tools first. They provide the
+system Git client required to clone this repository:
 
 ```bash
+xcode-select --install
+```
+
+Finish the installation from the macOS dialog, then clone the repository and
+run the bootstrap as the normal user:
+
+```bash
+git clone https://github.com/dosbenjamin/.dotfiles ~/.dotfiles
 ~/.dotfiles/scripts/bootstrap-macos.sh
 ```
+
+Do not run the bootstrap itself with `sudo`. It requests administrator access
+when a system-level installation needs it.
 
 The bootstrap is safe to rerun. It:
 
 1. validates macOS, Apple Silicon, the username, and repository path;
-2. requests installation of Xcode Command Line Tools if missing;
-3. installs Homebrew if missing;
+2. verifies the Xcode Command Line Tools and requests their installation if missing;
+3. obtains administrator access and installs Homebrew if missing;
 4. installs Lix if missing;
 5. imports the `GitHub Dark` Terminal profile when it is not already installed;
 6. applies `nix#macos` with nix-darwin.
 
-If Xcode CLT installation is requested, finish it and rerun the bootstrap.
+If the bootstrap requests the Xcode Command Line Tools (for example, when the
+repository was copied rather than cloned), finish their installation and rerun
+the bootstrap.
 
 ### Applying changes
 
 ```bash
-sudo nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
+sudo -H nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
   switch --flake ~/.dotfiles/nix#macos
 ```
 
