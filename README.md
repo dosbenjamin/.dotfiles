@@ -72,7 +72,8 @@ The bootstrap is safe to rerun. It:
 
 If the bootstrap requests the Xcode Command Line Tools (for example, when the
 repository was copied rather than cloned), finish their installation and rerun
-the bootstrap.
+the bootstrap. Log out and back in after the bootstrap completes so macOS loads
+the managed appearance and keyboard settings.
 
 ### Applying changes
 
@@ -116,9 +117,18 @@ Home Manager keeps the terminal environment deliberately small:
 - no managed SSH configuration;
 - no dependency on the legacy `.zshrc`, `.gitconfig`, or `.hushlogin` files.
 
+Home Manager also generates and applies a solid black wallpaper to every
+desktop and connected display on each activation. macOS uses the selected
+static wallpaper behind the Lock Screen interface as well. Desktop widgets are
+hidden both in the standard desktop and in Stage Manager.
+
 Cloudflare WARP provides connectivity to the VPS through Access for Infrastructure, while the native SSH client connects without a client-side proxy command. Codex is retained for occasional use on the Mac; this does not make macOS a local development workstation. Git, curl, and SSH come from macOS/Xcode Command Line Tools and are sufficient for bootstrap and occasional local use.
 
-nix-darwin manages Lix, flakes, JetBrains Mono, Dock and Finder preferences, dark mode, keyboard repeat, spelling/capitalization preferences, screenshots, and the Terminal profile name.
+nix-darwin manages Lix, flakes, JetBrains Mono, Dock and Finder preferences,
+dark mode, keyboard repeat, spelling/capitalization preferences, screenshots,
+and the Terminal profile name. The keyboard repeat delay is 15 and its repeat
+rate is 2 in macOS preference units; appearance and keyboard defaults require
+logging out and back in before all applications observe them.
 
 Homebrew installs the `mole` formula and these casks:
 

@@ -73,3 +73,5 @@ echo "Applying the macOS configuration..."
 cd "${repo_root}"
 sudo -H nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
   switch --flake "${repo_root}/nix#macos"
+
+echo "macOS configuration applied. Log out and back in to apply appearance and keyboard settings."
