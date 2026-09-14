@@ -2,7 +2,7 @@
 
 Personal configuration for Benjamin's remote Linux environment and Apple Silicon Macs.
 
-The Mac is intentionally a lightweight client rather than the primary development workstation. It runs macOS GUI applications, provides a minimal terminal for SSH and occasional local commands, and uses `cloudflared` for SSH access through Cloudflare short-lived certificates and tunnels. The main working environment is a remote VPS, which contains, or will receive, the substantial Linux dotfiles configuration.
+The Mac is intentionally a lightweight client rather than the primary development workstation. It runs macOS GUI applications, provides a minimal terminal for SSH and occasional local commands, and uses Cloudflare WARP for SSH access through Cloudflare Access for Infrastructure. The main working environment is a remote VPS, which contains, or will receive, the substantial Linux dotfiles configuration.
 
 The Linux setup remains script-based. macOS uses a flake with nix-darwin and Home Manager, while nix-darwin's Homebrew integration handles graphical applications. Linux can therefore migrate to Home Manager gradually without interrupting the existing setup.
 
@@ -97,22 +97,23 @@ Home Manager keeps the terminal environment deliberately small:
 
 - Zsh with no framework, theme, or third-party plugins;
 - `$HOME/.local/bin` on `PATH`;
-- `cloudflared`, Codex, and `mas` as the current contents of `home.packages`;
+- Codex and `mas` as the current contents of `home.packages`;
 - an empty `.hushlogin` generated independently of the legacy file;
+- no managed SSH configuration;
 - no dependency on the legacy `.zshrc`, `.gitconfig`, or `.hushlogin` files.
 
-`cloudflared` must remain available in the user shell because it participates directly in SSH connections through Cloudflare short-lived certificates and tunnels. Codex is retained for occasional use on the Mac; this does not make macOS a local development workstation. Git, curl, and SSH come from macOS/Xcode Command Line Tools and are sufficient for bootstrap and occasional local use.
+Cloudflare WARP provides connectivity to the VPS through Access for Infrastructure, while the native SSH client connects without a client-side proxy command. Codex is retained for occasional use on the Mac; this does not make macOS a local development workstation. Git, curl, and SSH come from macOS/Xcode Command Line Tools and are sufficient for bootstrap and occasional local use.
 
 nix-darwin manages Lix, flakes, JetBrains Mono, Dock and Finder preferences, dark mode, keyboard repeat, spelling/capitalization preferences, screenshots, and the Terminal profile name.
 
 Homebrew installs the `mole` formula and these casks:
 
 ```text
-battle-net             chatgpt            discord
-figma                  google-chrome      league-of-legends
-linearmouse            minecraft          nvidia-geforce-now
-rode-connect           steam              teamviewer
-visual-studio-code
+battle-net             chatgpt            cloudflare-warp
+discord                figma              google-chrome
+league-of-legends      linearmouse        minecraft
+nvidia-geforce-now     rode-connect       steam
+teamviewer             visual-studio-code
 ```
 
 The Mac App Store entries are Numbers, Telegram, and WhatsApp. During activation,

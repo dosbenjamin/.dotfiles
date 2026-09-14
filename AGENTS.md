@@ -22,9 +22,9 @@
 
 - Keep macOS intentionally minimal; avoid building a broad local development environment or installing a large collection of CLI tools.
 - Keep the macOS shell minimal: Zsh without Oh My Zsh, starship, zoxide, fzf, autosuggestions, syntax highlighting, or other plugins.
-- Keep `home.packages` limited to its current `cloudflared` and Codex packages unless explicitly requested otherwise.
-- Keep `cloudflared` available in the macOS user shell; SSH through Cloudflare depends on it.
-- Use macOS/Xcode CLT for Git, curl, and SSH. Do not manage `.gitconfig` on macOS.
+- Keep `home.packages` limited to its current Codex and `mas` packages unless explicitly requested otherwise.
+- Keep the `cloudflare-warp` cask installed on macOS; SSH through Cloudflare Access for Infrastructure depends on it.
+- Use macOS/Xcode CLT for Git, curl, and SSH. Do not manage `.gitconfig` or SSH configuration on macOS.
 - Do not enable destructive Homebrew cleanup; undeclared applications must remain installed.
 - Keep the Nix modules small and direct. Extract shared modules only when Linux actually reuses them.
 

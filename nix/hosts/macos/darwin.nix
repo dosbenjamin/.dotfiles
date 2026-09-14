@@ -29,6 +29,7 @@
     casks = [
       "battle-net"
       "chatgpt"
+      "cloudflare-warp"
       "discord"
       "figma"
       "google-chrome"
