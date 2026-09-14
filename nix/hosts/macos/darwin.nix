@@ -90,11 +90,6 @@
       NSAutomaticSpellingCorrectionEnabled = false;
     };
 
-    WindowManager = {
-      StandardHideWidgets = true;
-      StageManagerHideWidgets = true;
-    };
-
     screencapture = {
       location = "/Users/benjamin/Pictures/Screenshots";
       type = "png";
