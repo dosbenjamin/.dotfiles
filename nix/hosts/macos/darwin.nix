@@ -111,5 +111,11 @@
     };
   };
 
+  system.activationScripts.postActivation.text = ''
+    echo >&2 "reloading user interface services..."
+    killall -qu benjamin Finder || true
+    killall -qu benjamin SystemUIServer || true
+  '';
+
   system.stateVersion = 6;
 }

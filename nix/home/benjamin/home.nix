@@ -5,13 +5,6 @@
   ...
 }:
 
-let
-  blackWallpaper = pkgs.runCommand "solid-black-wallpaper.png" {
-    nativeBuildInputs = [ pkgs.imagemagick ];
-  } ''
-    magick -size 1x1 xc:black "$out"
-  '';
-in
 {
   home = {
     username = "benjamin";
@@ -35,7 +28,7 @@ in
   programs.desktoppr = {
     enable = true;
     settings = {
-      picture = "${blackWallpaper}";
+      picture = "/System/Library/Desktop Pictures/Solid Colors/Black.png";
       color = "000000";
       scale = "fill";
       setOnlyOnce = false;

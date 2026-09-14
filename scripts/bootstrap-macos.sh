@@ -5,6 +5,7 @@ set -euo pipefail
 readonly expected_user="benjamin"
 readonly expected_home="/Users/benjamin"
 readonly expected_repo="${expected_home}/.dotfiles"
+readonly screenshots_dir="${expected_home}/Pictures/Screenshots"
 readonly terminal_profile_name="GitHub Dark"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
@@ -60,6 +61,10 @@ if ! command -v nix >/dev/null 2>&1; then
 fi
 
 terminal_profile="${repo_root}/assets/terminal/GitHub Dark.terminal"
+
+# The destination must exist before nix-darwin writes the screencapture
+# preference or macOS may keep using the Desktop on the first activation.
+mkdir -p "${screenshots_dir}"
 
 if ! defaults read com.apple.Terminal "Window Settings" 2>/dev/null \
   | grep -Fq "\"${terminal_profile_name}\" ="; then

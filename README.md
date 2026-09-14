@@ -117,10 +117,10 @@ Home Manager keeps the terminal environment deliberately small:
 - no managed SSH configuration;
 - no dependency on the legacy `.zshrc`, `.gitconfig`, or `.hushlogin` files.
 
-Home Manager also generates and applies a solid black wallpaper to every
-desktop and connected display on each activation. macOS uses the selected
-static wallpaper behind the Lock Screen interface as well. Desktop widgets are
-hidden both in the standard desktop and in Stage Manager.
+Home Manager applies macOS's built-in solid black wallpaper to every desktop
+and connected display on each activation. macOS uses the selected static
+wallpaper behind the Lock Screen interface as well. Desktop widgets are hidden
+both in the standard desktop and in Stage Manager.
 
 Cloudflare WARP provides connectivity to the VPS through Access for Infrastructure, while the native SSH client connects without a client-side proxy command. Codex is retained for occasional use on the Mac; this does not make macOS a local development workstation. Git, curl, and SSH come from macOS/Xcode Command Line Tools and are sufficient for bootstrap and occasional local use.
 
