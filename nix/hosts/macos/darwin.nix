@@ -23,6 +23,7 @@
 
   homebrew = {
     enable = true;
+    enableZshIntegration = true;
 
     brews = [ "mole" ];
 
