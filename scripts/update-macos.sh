@@ -60,7 +60,8 @@ if ! git diff --quiet HEAD -- nix/flake.lock; then
 fi
 
 echo "Updating Nix flake inputs..."
-nix --extra-experimental-features 'nix-command flakes' flake update --flake path:./nix
+nix --extra-experimental-features 'nix-command flakes' flake update \
+  --flake "path:${expected_repo}/nix"
 
 if ! git diff --quiet HEAD -- nix/flake.lock; then
   git diff -- nix/flake.lock
