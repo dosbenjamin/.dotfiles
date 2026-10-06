@@ -11,10 +11,10 @@ usage() {
   cat <<'EOF'
 Usage: macos-update [--yes]
 
-Update and upgrade Nix, Homebrew, and Mac App Store applications, then clean
-obsolete Homebrew downloads and unreachable Nix store paths.
+Update and upgrade Nix from a temporary flake copy, Homebrew, and Mac App Store
+applications, then clean obsolete downloads and unreachable Nix store paths.
 
-  -y, --yes  Apply the updated Nix lock file without prompting
+  -y, --yes  Apply the updated Nix configuration without prompting
   -h, --help Show this help
 EOF
 }
@@ -54,22 +54,28 @@ fi
 
 cd "${expected_repo}"
 
-if ! git diff --quiet HEAD -- nix/flake.lock; then
-  echo "nix/flake.lock already has uncommitted changes; review them first." >&2
-  exit 1
-fi
+update_dir="$(mktemp -d)"
+cleanup() {
+  rm -rf -- "${update_dir}"
+}
+trap cleanup EXIT
+
+cp -R "${expected_repo}/nix/." "${update_dir}/"
 
 echo "Updating Nix flake inputs..."
 nix --extra-experimental-features 'nix-command flakes' flake update \
-  --flake "path:${expected_repo}/nix"
+  --flake "path:${update_dir}"
 
-if ! git diff --quiet HEAD -- nix/flake.lock; then
-  git diff -- nix/flake.lock
+if ! cmp -s "${expected_repo}/nix/flake.lock" "${update_dir}/flake.lock"; then
+  diff -u \
+    --label nix/flake.lock \
+    --label nix/flake.lock.updated \
+    "${expected_repo}/nix/flake.lock" "${update_dir}/flake.lock" || true
 
   if [[ "${assume_yes}" == false ]]; then
     read -r -p "Apply this Nix update? [y/N] " reply
     if [[ ! "${reply}" =~ ^[Yy]$ ]]; then
-      echo "Stopped before activation; the lock-file update was left for review."
+      echo "Stopped before activation; the repository was not changed."
       exit 0
     fi
   fi
@@ -79,7 +85,7 @@ fi
 
 echo "Applying the macOS configuration..."
 sudo -H nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
-  switch --flake "path:${expected_repo}/nix#macos"
+  switch --flake "path:${update_dir}#macos"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
