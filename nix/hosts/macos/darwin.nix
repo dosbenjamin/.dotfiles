@@ -10,7 +10,7 @@
   };
 
   nix = {
-    package = pkgs.lixPackageSets.lix_2_95.lix;
+    package = pkgs.lixPackageSets.latest.lix;
     settings.experimental-features = [
       "nix-command"
       "flakes"
