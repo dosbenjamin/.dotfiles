@@ -16,7 +16,7 @@ concurrency:
 jobs:
   update:
     name: Update and validate flake inputs
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Check out repository
@@ -32,7 +32,7 @@ jobs:
         run: bash -n scripts/install.sh scripts/post-install.sh scripts/bootstrap-macos.sh
 
       - name: Check flake
-        run: nix flake check path:./nix --no-build
+        run: nix flake check path:./nix --no-build --all-systems
 
       - name: Evaluate macOS configuration
         run: >-
