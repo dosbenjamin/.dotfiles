@@ -42,7 +42,17 @@ jobs:
       - name: Check diff
         run: git diff --check
 
+      - name: Detect lockfile changes
+        id: changes
+        run: |
+          if git diff --quiet -- nix/flake.lock; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create update pull request
+        if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
           add-paths: nix/flake.lock
