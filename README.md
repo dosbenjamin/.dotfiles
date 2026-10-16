@@ -82,7 +82,11 @@ sudo -H nix run 'nix-darwin/nix-darwin-26.05#darwin-rebuild' -- \
   switch --flake ~/.dotfiles/nix#macos
 ```
 
-Update pinned inputs deliberately with:
+Pinned inputs are updated automatically every Monday by GitHub Actions. The
+workflow validates the updated configuration and opens a pull request only when
+`nix/flake.lock` changes. It can also be started manually from the Actions tab.
+
+To update pinned inputs locally instead, run:
 
 ```bash
 cd ~/.dotfiles/nix
@@ -100,8 +104,9 @@ obsolete Homebrew downloads and unreachable Nix store paths:
 macos-update
 ```
 
-Update and commit `nix/flake.lock` deliberately on the VPS. The Mac only applies
-that source of truth and does not modify the repository during routine updates.
+Review and merge dependency update pull requests deliberately. The Mac only
+applies the repository's pinned source of truth and does not modify it during
+routine updates.
 
 ### Managed macOS configuration
 
