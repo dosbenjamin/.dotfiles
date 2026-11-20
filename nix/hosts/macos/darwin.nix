@@ -31,6 +31,7 @@
       "battle-net"
       "chatgpt"
       "cloudflare-warp"
+      "curseforge"
       "discord"
       "figma"
       "google-chrome"

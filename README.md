@@ -133,10 +133,10 @@ Homebrew installs the `mole` formula and these casks:
 
 ```text
 battle-net             chatgpt            cloudflare-warp
-discord                figma              google-chrome
-league-of-legends      linearmouse        minecraft
-nvidia-geforce-now     rode-connect       steam
-teamviewer             visual-studio-code
+curseforge             discord            figma
+google-chrome          league-of-legends  linearmouse
+minecraft              nvidia-geforce-now rode-connect
+steam                  teamviewer         visual-studio-code
 ```
 
 The Mac App Store entries are Numbers, Telegram, and WhatsApp. During activation,
