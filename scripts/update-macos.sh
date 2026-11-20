@@ -57,7 +57,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "Updating and upgrading Homebrew..."
 brew update
 brew upgrade
-brew upgrade --cask --greedy
+brew upgrade --cask --greedy-latest
 
 echo "Upgrading Mac App Store applications..."
 mas upgrade
